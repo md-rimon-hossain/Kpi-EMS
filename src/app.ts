@@ -28,7 +28,7 @@ app.get("/", (req: Request, res: Response) => {
 });
 
 // 404 handler
-app.use("*", (req: Request, res: Response) => {
+app.all("*", (req: Request, res: Response) => {
   res.status(404).json({ message: "Not Found" });
 });
 

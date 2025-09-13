@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import app from "./app";
 import config from "./app/config";
 
-async function startServer() {
+async function main() {
   try {
     await mongoose.connect(config.MONGODB_URI as string);
 
@@ -14,4 +14,4 @@ async function startServer() {
   }
 }
 
-startServer();
+main();

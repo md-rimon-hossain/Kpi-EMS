@@ -24,8 +24,7 @@ app.use("/api/v1/employees", EmployeeRoutes);
 app.use("/api/v1/vacation", VacationRoutes);
 
 app.get("/", (req: Request, res: Response) => {
-  console.log("Root endpoint hit");
-  res.send("Employee Management System API is running...");
+  res.json({ message: "Welcome to Employee Management System API" });
 });
 
 // 404 handler

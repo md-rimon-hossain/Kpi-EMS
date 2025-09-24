@@ -10,15 +10,27 @@ app.use(express.json());
 app.use(express.text());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
+
+const allowedOrigins = [
+  "http://localhost:3000",
+  "http://localhost:8081",
+];
+
 app.use(cors({
-  origin: ["http://localhost:3000","http://localhost:8081"], // or "*" if for Electron
-  
+  origin: function(origin, callback){
+    // allow requests with no origin (like mobile apps or Postman)
+    if (!origin) return callback(null, true);
+    
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true
 }));
 
-
 app.use(morgan("dev"));
-
 
 // ✅ Routes
 app.use("/api/v1/employees", EmployeeRoutes);

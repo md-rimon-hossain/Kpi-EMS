@@ -1,10 +1,9 @@
 import { Router } from "express";
-import {  login, getUserInfo, registerEmployee } from "./employee.controller";
+import { login, getUserInfo, registerEmployee } from "./employee.controller";
 import { authMiddleware } from "../../middleware/auth";
 import Employee from "./employee.model";
 
 const EmployeeRoutes = Router();
-
 
 EmployeeRoutes.post("/registerEmployee", async (req, res, next) => {
   try {
@@ -29,8 +28,5 @@ EmployeeRoutes.get("/hasAdmin", async (req, res) => {
 
 EmployeeRoutes.post("/login", login);
 EmployeeRoutes.get("/getUserInfo", authMiddleware(), getUserInfo);
-
-
-
 
 export { EmployeeRoutes };

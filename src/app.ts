@@ -11,7 +11,8 @@ app.use(express.text());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(cors({
-  origin: ["http://localhost:3000"], // or "*" if for Electron
+  origin: ["http://localhost:3000","http://localhost:8081"], // or "*" if for Electron
+  
   credentials: true
 }));
 

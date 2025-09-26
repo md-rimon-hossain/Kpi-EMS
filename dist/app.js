@@ -13,8 +13,22 @@ app.use(express_1.default.json());
 app.use(express_1.default.text());
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use(express_1.default.static("public"));
+const allowedOrigins = [
+    "http://localhost:3000",
+    "http://localhost:8081",
+];
 app.use((0, cors_1.default)({
-    origin: ["http://localhost:3000"], // or "*" if for Electron
+    origin: function (origin, callback) {
+        // allow requests with no origin (like mobile apps or Postman)
+        if (!origin)
+            return callback(null, true);
+        if (allowedOrigins.indexOf(origin) !== -1) {
+            callback(null, true);
+        }
+        else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
     credentials: true
 }));
 app.use((0, morgan_1.default)("dev"));

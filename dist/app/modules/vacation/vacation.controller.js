@@ -89,13 +89,13 @@ const getAllVacationRequests = (req, res, next) => __awaiter(void 0, void 0, voi
         if (employee.role === "Principal") {
             // Principal: see all vacation requests that have been reviewed
             requests = yield vacation_model_1.default.find({ status: "Reviewed" })
-                .populate("employee", "fullName email role")
+                .populate("employee", "fullName email role vacationRemaining")
                 .sort({ createdAt: -1 });
         }
         else if (employee.role === "Chief Instructor") {
             // Chief Instructor: see all pending requests
             requests = yield vacation_model_1.default.find({ status: "Pending" })
-                .populate("employee", "fullName email role")
+                .populate("employee", "fullName email role vacationRemaining")
                 .sort({ createdAt: -1 });
         }
         else {

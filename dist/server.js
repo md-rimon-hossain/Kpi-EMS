@@ -20,7 +20,7 @@ function main() {
         try {
             yield mongoose_1.default.connect(config_1.default.MONGODB_URI);
             app_1.default.listen(config_1.default.PORT, () => {
-                console.log(`Server is running on port ${config_1.default.PORT}`);
+                console.log(`Server is running on port http://localhost:${config_1.default.PORT}`);
             });
         }
         catch (error) {

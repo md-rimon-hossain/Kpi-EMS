@@ -104,14 +104,14 @@ export const getAllVacationRequests: RequestHandler = async (
 
       // Principal: see all vacation requests that have been reviewed
       requests = await VacationRequest.find({ status: "Reviewed" })
-        .populate("employee", "fullName email role")
+        .populate("employee", "fullName email role vacationRemaining")
         .sort({ createdAt: -1 });
 
     } else if (employee.role === "Chief Instructor") {
 
       // Chief Instructor: see all pending requests
       requests = await VacationRequest.find({ status: "Pending" })
-        .populate("employee", "fullName email role")
+        .populate("employee", "fullName email role vacationRemaining")
         .sort({ createdAt: -1 });
 
     } else {
